@@ -10,7 +10,7 @@ use zeroize::{Zeroize, ZeroizeOnDrop};
 #[cfg(feature = "serde")]
 use {
     pkcs8::{DecodePrivateKey, EncodePrivateKey},
-    serdect::serde::{de, ser, Deserialize, Serialize},
+    serdect::serde::{Deserialize, Serialize, de, ser},
     spki::{DecodePublicKey, EncodePublicKey},
 };
 
@@ -706,10 +706,10 @@ pub fn check_public(public_key: &impl PublicKeyParts) -> Result<()> {
 /// Check that the public key is well formed and has an exponent within acceptable bounds.
 #[inline]
 fn check_public_with_max_size(n: &BoxedUint, e: &BoxedUint, max_size: Option<usize>) -> Result<()> {
-    if let Some(max_size) = max_size {
-        if n.bits_vartime() as usize > max_size {
-            return Err(Error::ModulusTooLarge);
-        }
+    if let Some(max_size) = max_size
+        && n.bits_vartime() as usize > max_size
+    {
+        return Err(Error::ModulusTooLarge);
     }
 
     check_public_skip_exponent_size(n, e)?;
@@ -969,7 +969,7 @@ mod tests {
     fn test_serde() {
         use rand::rngs::ChaCha8Rng;
         use rand_core::SeedableRng;
-        use serde_test::{assert_tokens, Configure, Token};
+        use serde_test::{Configure, Token, assert_tokens};
 
         let mut rng = ChaCha8Rng::from_seed([42; 32]);
         let priv_key = RsaPrivateKey::new_unchecked(&mut rng, 64).expect("failed to generate key");

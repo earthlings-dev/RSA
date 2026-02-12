@@ -9,9 +9,8 @@ use std::fs::File;
 
 use pkcs1::DecodeRsaPublicKey;
 use rsa::{
-    pkcs1v15, pss,
+    RsaPublicKey, pkcs1v15, pss,
     signature::{Error as SignatureError, Verifier},
-    RsaPublicKey,
 };
 use rstest::rstest;
 use serde::Deserialize;

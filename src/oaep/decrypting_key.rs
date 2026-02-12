@@ -1,8 +1,8 @@
 use super::decrypt_digest;
 use crate::{
+    Result, RsaPrivateKey,
     dummy_rng::DummyRng,
     traits::{Decryptor, RandomizedDecryptor},
-    Result, RsaPrivateKey,
 };
 use alloc::{boxed::Box, vec::Vec};
 use core::marker::PhantomData;
@@ -103,7 +103,7 @@ mod tests {
         use super::*;
         use rand::rngs::ChaCha8Rng;
         use rand_core::SeedableRng;
-        use serde_test::{assert_tokens, Configure, Token};
+        use serde_test::{Configure, Token, assert_tokens};
         use sha2::Sha256;
 
         let mut rng = ChaCha8Rng::from_seed([42; 32]);

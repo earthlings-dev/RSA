@@ -2,8 +2,8 @@
 
 use alloc::boxed::Box;
 use crypto_bigint::{
-    modular::{BoxedMontyForm, BoxedMontyParams},
     BoxedUint, NonZero,
+    modular::{BoxedMontyForm, BoxedMontyParams},
 };
 use zeroize::Zeroize;
 

@@ -400,7 +400,7 @@ mod tests {
         let mut buf = [0u8; 32];
         rng.fill_bytes(&mut buf);
 
-        if rng.next_u32() % 2 == 0 {
+        if rng.next_u32().is_multiple_of(2) {
             Some(buf.into())
         } else {
             None

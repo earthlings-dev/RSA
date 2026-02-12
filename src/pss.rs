@@ -39,7 +39,7 @@ use {
     crate::encoding::ID_RSASSA_PSS,
     const_oid::AssociatedOid,
     pkcs1::RsaPssParams,
-    spki::{der::Any, AlgorithmIdentifierOwned},
+    spki::{AlgorithmIdentifierOwned, der::Any},
 };
 
 /// Digital signatures using PSS padding.

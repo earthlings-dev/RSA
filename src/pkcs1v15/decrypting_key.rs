@@ -1,8 +1,8 @@
-use super::{decrypt, EncryptingKey};
+use super::{EncryptingKey, decrypt};
 use crate::{
+    Result, RsaPrivateKey,
     dummy_rng::DummyRng,
     traits::{Decryptor, EncryptingKeypair, RandomizedDecryptor},
-    Result, RsaPrivateKey,
 };
 use alloc::vec::Vec;
 use rand_core::CryptoRng;
@@ -61,7 +61,7 @@ mod tests {
         use super::*;
         use rand::rngs::ChaCha8Rng;
         use rand_core::SeedableRng;
-        use serde_test::{assert_tokens, Configure, Token};
+        use serde_test::{Configure, Token, assert_tokens};
 
         let mut rng = ChaCha8Rng::from_seed([42; 32]);
         let decrypting_key = DecryptingKey::new(

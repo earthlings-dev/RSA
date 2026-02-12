@@ -118,20 +118,20 @@ impl SignatureScheme for Pkcs1v15Sign {
         priv_key: &RsaPrivateKey,
         hashed: &[u8],
     ) -> Result<Vec<u8>> {
-        if let Some(hash_len) = self.hash_len {
-            if hashed.len() != hash_len {
-                return Err(Error::InputNotHashed);
-            }
+        if let Some(hash_len) = self.hash_len
+            && hashed.len() != hash_len
+        {
+            return Err(Error::InputNotHashed);
         }
 
         sign(rng, priv_key, &self.prefix, hashed)
     }
 
     fn verify(self, pub_key: &RsaPublicKey, hashed: &[u8], sig: &[u8]) -> Result<()> {
-        if let Some(hash_len) = self.hash_len {
-            if hashed.len() != hash_len {
-                return Err(Error::InputNotHashed);
-            }
+        if let Some(hash_len) = self.hash_len
+            && hashed.len() != hash_len
+        {
+            return Err(Error::InputNotHashed);
         }
 
         verify(
@@ -268,9 +268,9 @@ pub use oid::RsaSignatureAssociatedOid;
 mod tests {
     use super::*;
     use ::signature::{
-        hazmat::{PrehashSigner, PrehashVerifier},
         DigestSigner, DigestVerifier, Keypair, RandomizedDigestSigner, RandomizedSigner,
         SignatureEncoding, Signer, Verifier,
+        hazmat::{PrehashSigner, PrehashVerifier},
     };
     use base64ct::{Base64, Encoding};
     use hex_literal::hex;
