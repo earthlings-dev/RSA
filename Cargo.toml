@@ -15,8 +15,8 @@ exclude = ["marvin_toolkit/", "thirdparty/"]
 
 [dependencies]
 const-oid = { version = "0.10", default-features = false }
-crypto-bigint = { version = "0.7.0-rc.26", default-features = false, features = ["zeroize", "alloc"] }
-crypto-primes = { version = "0.7.0-pre.8", default-features = false }
+crypto-bigint = { version = "0.7.0-rc.27", default-features = false, features = ["zeroize", "alloc"] }
+crypto-primes = { version = "0.7.0-pre.9", default-features = false }
 digest = { version = "0.11.0-rc.12", default-features = false, features = ["alloc", "oid"] }
 rand_core = { version = "0.10", default-features = false }
 signature = { version = "3.0.0-rc.10", default-features = false, features = ["alloc", "digest", "rand_core"] }
@@ -61,6 +61,18 @@ std = ["pkcs1?/std", "pkcs8?/std"]
 
 [package.metadata.docs.rs]
 features = ["std", "serde", "hazmat", "sha2"]
+
+[patch.crates-io]
+crypto-bigint = { git = "https://github.com/earthlings-dev/rustcrypto-crypto-bigint.git" }
+crypto-primes = { git = "https://github.com/earthlings-dev/crypto-primes.git" }
+rand_core = { git = "https://github.com/earthlings-dev/rand_core.git" }
+rand = { git = "https://github.com/earthlings-dev/rand.git" }
+digest = { git = "https://github.com/earthlings-dev/rustcrypto-traits.git" }
+signature = { git = "https://github.com/earthlings-dev/rustcrypto-traits.git" }
+crypto-common = { git = "https://github.com/earthlings-dev/rustcrypto-traits.git" }
+serde = { git = "https://github.com/earthlings-dev/serde.git" }
+serde_core = { git = "https://github.com/earthlings-dev/serde.git" }
+serde_derive = { git = "https://github.com/earthlings-dev/serde.git" }
 
 [profile.dev]
 opt-level = 2
