@@ -63,16 +63,16 @@ std = ["pkcs1?/std", "pkcs8?/std"]
 features = ["std", "serde", "hazmat", "sha2"]
 
 [patch.crates-io]
-crypto-bigint = { git = "https://github.com/earthlings-dev/rustcrypto-crypto-bigint.git" }
-crypto-primes = { git = "https://github.com/earthlings-dev/crypto-primes.git" }
-rand_core = { git = "https://github.com/earthlings-dev/rand_core.git" }
-rand = { git = "https://github.com/earthlings-dev/rand.git" }
-digest = { git = "https://github.com/earthlings-dev/rustcrypto-traits.git" }
-signature = { git = "https://github.com/earthlings-dev/rustcrypto-traits.git" }
-crypto-common = { git = "https://github.com/earthlings-dev/rustcrypto-traits.git" }
-serde = { git = "https://github.com/earthlings-dev/serde.git" }
-serde_core = { git = "https://github.com/earthlings-dev/serde.git" }
-serde_derive = { git = "https://github.com/earthlings-dev/serde.git" }
+crypto-bigint = { path = "../rustcrypto-crypto-bigint" }
+crypto-primes = { path = "../crypto-primes" }
+rand_core = { path = "../rand_core" }
+rand = { path = "../rand" }
+digest = { path = "../rustcrypto-traits/digest" }
+signature = { path = "../rustcrypto-traits/signature" }
+crypto-common = { path = "../rustcrypto-traits/crypto-common" }
+serde = { path = "../serde/serde" }
+serde_core = { path = "../serde/serde_core" }
+serde_derive = { path = "../serde/serde_derive" }
 
 [profile.dev]
 opt-level = 2
